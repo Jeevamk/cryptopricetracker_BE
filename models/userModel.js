@@ -19,9 +19,9 @@ const userSchema = new mongoose.Schema({
         type:Boolean,
         default:false
     },
-    // verificationToken: {
-    //     type: String,
-    //   },
+    verificationToken: {
+        type: String,
+      },
     
 })
 
@@ -37,4 +37,4 @@ userSchema.pre('save',async function (next){
 
 
 
-export default mongoose.model('userCollection',userSchema)
+export default mongoose.model('userModel',userSchema)
