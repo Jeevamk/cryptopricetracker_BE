@@ -2,6 +2,7 @@ import express from 'express'
 import bodyParser from 'body-parser'
 import database from './database/connection.js'
 import dotenv from 'dotenv'
+import userRoutes from './routes/userRoutes.js'
 dotenv.config()
 
 
@@ -11,6 +12,7 @@ app.use(bodyParser.json())
 
 database();
 
+app.use('/api/user',userRoutes)
 
 
 
