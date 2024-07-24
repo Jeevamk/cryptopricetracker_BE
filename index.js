@@ -4,6 +4,7 @@ import database from './database/connection.js'
 import dotenv from 'dotenv'
 import userRoutes from './routes/userRoutes.js'
 import coinRoutes from './routes/coinRoutes.js'
+import priceRoutes from './routes/priceRoutes.js'
 import cors from 'cors'
 import { fetchAndStorePrices } from './controller/coinController.js'
 import cron from 'node-cron';
@@ -27,6 +28,7 @@ cron.schedule('* * * * *', fetchAndStorePrices);
 
 app.use('/api/user',userRoutes)
 app.use('/api/coins',coinRoutes)
+app.use('/api/prices',priceRoutes)
 
 
 app.get('/',(req,res)=>{

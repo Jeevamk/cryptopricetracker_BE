@@ -89,8 +89,6 @@ export const fetchAndStorePrices = async () => {
       }
     }
 
-   
-
   } catch (error) {
     console.error('Error fetching or storing price data:', error);
   }
