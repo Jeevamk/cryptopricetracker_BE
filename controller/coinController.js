@@ -1,3 +1,5 @@
+import Coin from "../models/coinModel.js";
+
 
 const COINGECKO_API_URL = 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false';
 const WAZIRX_API_URL = 'https://x.wazirx.com/wazirx-falcon/api/v2.0/crypto_rates';
@@ -27,3 +29,24 @@ export const getCoin = async (req, res) => {
 
 
 
+export const coinHistory = async (req, res) => {
+  try {
+    const { symbol } = req.params;
+    const thirtyMinutesAgo = new Date(Date.now() - 30 * 60 * 1000);
+
+    const coin = await Coin.findOne({
+      symbol,
+      'prices.timestamp': { $gte: thirtyMinutesAgo }
+    });
+
+    if (!coin) {
+      return res.status(404).json({ error: 'Coin not found' });
+    }
+
+    const prices = coin.prices.filter(price => price.timestamp >= thirtyMinutesAgo);
+    res.json(prices);
+  } catch (error) {
+    console.error('Error retrieving price history:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+} 

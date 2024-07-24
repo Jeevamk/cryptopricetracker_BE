@@ -10,13 +10,21 @@ dotenv.config()
 
 const app = express();
 
+
+const corsOptions = {
+    origin: 'http://localhost:5001',
+    optionsSuccessStatus: 200 
+  };
+  
+  app.use(cors(corsOptions));
 app.use(bodyParser.json())
-app.use(cors())
+
 
 database();
 
 app.use('/api/user',userRoutes)
 app.use('/api/coins',coinRoutes)
+
 
 app.get('/',(req,res)=>{
     res.status(200).json({msg:'connect'})
