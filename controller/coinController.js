@@ -1,5 +1,3 @@
-import dotenv from 'dotenv'
-dotenv.config()
 
 const COINGECKO_API_URL = 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false';
 const WAZIRX_API_URL = 'https://x.wazirx.com/wazirx-falcon/api/v2.0/crypto_rates';
@@ -26,3 +24,6 @@ export const getCoin = async (req, res) => {
       res.status(500).json({ error: 'Internal Server Error' });
     }
   }
+
+
+

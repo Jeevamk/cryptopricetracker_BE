@@ -4,12 +4,14 @@ import database from './database/connection.js'
 import dotenv from 'dotenv'
 import userRoutes from './routes/userRoutes.js'
 import coinRoutes from './routes/coinRoutes.js'
+import cors from 'cors'
 dotenv.config()
 
 
 const app = express();
 
 app.use(bodyParser.json())
+app.use(cors())
 
 database();
 
