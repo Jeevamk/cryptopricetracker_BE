@@ -1,16 +1,19 @@
 import Coin from "../models/coinModel.js";
 
+const COINGECKO_API_URL = 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false';
+
 export const priceData = async (req, res) => {
     const { symbol } = req.params;
+    console.log(symbol);
     try {
       const coin = await Coin.findOne({ symbol });
+      console.log(coin);
       if (!coin) return res.status(404).json({ message: 'Coin not found' });
   
       const thirtyMinutesAgo = new Date(Date.now() - 30 * 60 * 1000);
       const recentPrices = coin.prices.filter(price => price.timestamp >= thirtyMinutesAgo);
-  
       res.json(recentPrices);
     } catch (error) {
       res.status(500).json({ message: 'Error fetching price data' });
     }
-  };
+};
