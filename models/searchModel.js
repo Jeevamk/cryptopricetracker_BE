@@ -7,18 +7,16 @@ const searchHistorySchema = new mongoose.Schema({
         ref: 'userModel',
         required : true
     },
-    history : {
-        type : [String],
-        default :[]
-    },
-    exploreHistory : {
-        type : [String],
-        default :[]
-    },
-    createdAt: {
-        type: Date,
-        default: Date.now,
-    },
+    searches: [String],
+
+    // exploreHistory : {
+    //     type : [String],
+    //     default :[]
+    // },
+    // createdAt: {
+    //     type: Date,
+    //     default: Date.now,
+    // },
 })
 
 

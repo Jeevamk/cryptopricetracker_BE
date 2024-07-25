@@ -50,7 +50,27 @@ export const coinHistory = async (req, res) => {
     console.error('Error retrieving price history:', error);
     res.status(500).json({ error: 'Internal Server Error' });
   }
-} 
+}
+
+
+export const searchCoins = async (req, res) => {
+  try {
+    const { query } = req.query; // Get query from request
+    const coins = await Coin.find({
+      symbol: { $regex: query, $options: 'i' } // Case-insensitive search
+    }).limit(10); // Limit results to 10 for performance
+
+    const results = coins.map(coin => ({
+      coinName: coin.coinName,
+      symbol: coin.symbol,
+    }));
+
+    res.json(results);
+  } catch (error) {
+    console.error('Error searching coins:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+};
 
 
 export const fetchAndStorePrices = async () => {

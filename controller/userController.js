@@ -77,7 +77,6 @@ export const verifyEmail = async (req, res) => {
       <html>
         <body>
           <h1>Email Verified Successfully</h1>
-          
         </body>
       </html>
     `);
