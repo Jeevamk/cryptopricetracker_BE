@@ -9,14 +9,6 @@ const searchHistorySchema = new mongoose.Schema({
     },
     searches: [String],
 
-    // exploreHistory : {
-    //     type : [String],
-    //     default :[]
-    // },
-    // createdAt: {
-    //     type: Date,
-    //     default: Date.now,
-    // },
 })
 
 
