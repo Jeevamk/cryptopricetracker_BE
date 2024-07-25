@@ -77,7 +77,7 @@ export const verifyEmail = async (req, res) => {
       <html>
         <body>
           <h1>Email Verified Successfully</h1>
-          <p>You can now <a href="http://localhost:5173/login">login here</a></p>
+          
         </body>
       </html>
     `);
