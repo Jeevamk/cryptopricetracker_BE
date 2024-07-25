@@ -72,11 +72,20 @@ export const verifyEmail = async (req, res) => {
     user.isVerified = true;
     user.verificationToken = null;
     await user.save();
-    res.status(200).json({ msg: "Email verified" });
+    // res.status(200).json({ msg: "Email verified" });
+    res.send(`
+      <html>
+        <body>
+          <h1>Email Verified Successfully</h1>
+          <p>You can now <a href="http://localhost:5173/login">login here</a></p>
+        </body>
+      </html>
+    `);
   } catch (error) {
     res.status(500).json({ msg: "Server error" });
   }
 };
+
 
 //login
 export const login = async (req, res) => {
