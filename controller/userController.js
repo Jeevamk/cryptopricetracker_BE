@@ -60,6 +60,7 @@ export const register = async (req, res) => {
   }
 };
 
+
 // Verify Email
 export const verifyEmail = async (req, res) => {
   try {
@@ -95,6 +96,7 @@ export const login = async (req, res) => {
     if (!user) {
       return res.status(400).json({ message: "User does not exist" });
     }
+    
     const isPasswordCorrect = await bcrypt.compare(password, user.password);
     if (!isPasswordCorrect) {
       return res.status(400).json({ message: "Invalid credentials" });

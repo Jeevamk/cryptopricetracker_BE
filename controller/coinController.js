@@ -30,27 +30,28 @@ export const getCoin = async (req, res) => {
 
 
 
-export const coinHistory = async (req, res) => {
-  try {
-    const { symbol } = req.params;
-    const thirtyMinutesAgo = new Date(Date.now() - 30 * 60 * 1000);
+// export const coinHistory = async (req, res) => {
+//   try {
+//     const { symbol } = req.params;
+//     const thirtyMinutesAgo = new Date(Date.now() - 30 * 60 * 1000);
 
-    const coin = await Coin.findOne({
-      symbol,
-      'prices.timestamp': { $gte: thirtyMinutesAgo }
-    });
+//     const coin = await Coin.findOne({
+//       symbol,
+//       'prices.timestamp': { $gte: thirtyMinutesAgo }
+//     });
 
-    if (!coin) {
-      return res.status(404).json({ error: 'Coin not found' });
-    }
+//     if (!coin) {
+//       return res.status(404).json({ error: 'Coin not found' });
+//     }
 
-    const prices = coin.prices.filter(price => price.timestamp >= thirtyMinutesAgo);
-    res.json(prices);
-  } catch (error) {
-    console.error('Error retrieving price history:', error);
-    res.status(500).json({ error: 'Internal Server Error' });
-  }
-}
+//     const prices = coin.prices.filter(price => price.timestamp >= thirtyMinutesAgo);
+//     res.json(prices);
+//   } catch (error) {
+//     console.error('Error retrieving price history:', error);
+//     res.status(500).json({ error: 'Internal Server Error' });
+//   }
+// }
+
 
 
 export const searchCoins = async (req, res) => {
