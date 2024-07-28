@@ -54,24 +54,24 @@ export const getCoin = async (req, res) => {
 
 
 
-export const searchCoins = async (req, res) => {
-  try {
-    const { query } = req.query; 
-    const coins = await Coin.find({
-      symbol: { $regex: query, $options: 'i' } 
-    }).limit(10); 
+// export const searchCoins = async (req, res) => {
+//   try {
+//     const { query } = req.query; 
+//     const coins = await Coin.find({
+//       symbol: { $regex: query, $options: 'i' } 
+//     }).limit(10); 
     
-    const results = coins.map(coin => ({
-      coinName: coin.coinName,
-      symbol: coin.symbol,
-    }));
+//     const results = coins.map(coin => ({
+//       coinName: coin.coinName,
+//       symbol: coin.symbol,
+//     }));
 
-    res.json(results);
-  } catch (error) {
-    console.error('Error searching coins:', error);
-    res.status(500).json({ error: 'Internal Server Error' });
-  }
-};
+//     res.json(results);
+//   } catch (error) {
+//     console.error('Error searching coins:', error);
+//     res.status(500).json({ error: 'Internal Server Error' });
+//   }
+// };
 
 
 export const fetchAndStorePrices = async () => {
